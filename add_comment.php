@@ -1,11 +1,6 @@
 <?php
 
-// Fill in these variables to match your database credentials
-$db_name = '';
-$db_user = '';
-$db_user_pass = '';
-
-$connect = new PDO('mysql:host=localhost;dbname=$db_name', '$db_user', '$db_user_pass');
+$connect = new PDO('mysql:host=localhost;dbname=DATABASE_NAME_HERE', 'DATABASE_USERNAME_HERE', 'DATABASE_USERNAME_PASSWORD_HERE');
 
 $error = '';
 $comment_name = '';
@@ -13,7 +8,7 @@ $comment_content = '';
 
 if(empty($_POST["comment_name"]))
 {
-	$error .= '<p class="text-danger">Your Name is required</p>';
+	$error .= '<p class="text-danger">Name is required</p>';
 }
 else
 {
@@ -25,20 +20,20 @@ else
 
 if(empty($_POST["comment_content"]))
 {
-	$error .= '<p class="text-danger">Cant post an empty comment</p>';
+	$error .= '<p class="text-danger">Comment is required</p>';
 }
 else
 {
 	$comment_content = test_input($_POST["comment_content"]);
 	if (!preg_match("/^[a-zA-Z-' ]*$/",$comment_content)) {
-		$error .= '<p class="text-danger">Your comment can only contain letters and white space</p>';
+		$error .= '<p class="text-danger">Comment can only contain letters and white space</p>';
 	}
 }
 
 if($error == '')
 {
 	$query = "
- INSERT INTO tbl_comment
+ INSERT INTO //TABLE_NAME_HERE
  (parent_comment_id, comment, comment_sender_name)
  VALUES (:parent_comment_id, :comment, :comment_sender_name)
  ";
@@ -50,7 +45,7 @@ if($error == '')
 			':comment_sender_name' => $comment_name
 		)
 	);
-	$error = '<label class="text-success">Comment Posted</label>';
+	$error = '<label class="text-success">Comment Added</label>';
 }
 
 $data = array(
