@@ -1,14 +1,9 @@
-
 <?php
 
-$db_name = '';
-$db_user = '';
-$db_user_pass = '';
-
-$connect = new PDO('mysql:host=localhost;dbname=$db_name', '$db_user', '$db_user_pass');
+$connect = new PDO('mysql:host=localhost;dbname=DATABASE_NAME_HERE', 'DATABASE_USERNAME_HERE', 'DATABASE_USER_PASSWORD_HERE');
 
 $query = "
-SELECT * FROM tbl_comment
+SELECT * FROM //TABLE_NAME_HERE
 WHERE parent_comment_id = '0'
 ORDER BY comment_id DESC
 ";
@@ -36,7 +31,7 @@ echo $output;
 function get_reply_comment($connect, $parent_id = 0, $marginleft = 0)
 {
 	$query = "
- SELECT * FROM tbl_comment WHERE parent_comment_id = '".$parent_id."'
+ SELECT * FROM //TABLE_NAME_HERE WHERE parent_comment_id = '".$parent_id."'
  ";
 	$output = '';
 	$statement = $connect->prepare($query);
@@ -57,7 +52,7 @@ function get_reply_comment($connect, $parent_id = 0, $marginleft = 0)
 		{
 			$output .= '
    <div class="panel panel-default" style="margin-left:'.$marginleft.'px">
-    <div class="panel-heading">By <strong>'.$row["comment_sender_name"].'</strong> on <i>'.$row["date"].'</i></div>
+    <div class="panel-heading">By <b>'.$row["comment_sender_name"].'</b> on <i>'.$row["date"].'</i></div>
     <div class="panel-body" style="padding: 15px;">'.$row["comment"].'</div>
     <div class="panel-footer" align="right"><button type="button" class="btn btn-default reply" id="'.$row["comment_id"].'">Reply</button></div>
    </div>
