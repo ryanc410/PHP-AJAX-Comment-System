@@ -1,4 +1,5 @@
-CREATE TABLE IF NOT EXISTS `tbl_comment` (
+// Execute first
+CREATE TABLE IF NOT EXISTS `TABLE_NAME_HERE` (
   `comment_id` int(11) NOT NULL,
   `parent_comment_id` int(11) NOT NULL,
   `comment` varchar(200) NOT NULL,
@@ -7,9 +8,9 @@ CREATE TABLE IF NOT EXISTS `tbl_comment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-ALTER TABLE `tbl_comment`
+ALTER TABLE `TABLE_NAME_HERE`
   ADD PRIMARY KEY (`comment_id`);
 
-
-ALTER TABLE `tbl_comment`
+// Adds Auto Increment feature to the comment id
+ALTER TABLE `TABLE_NAME_HERE`
   MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
